@@ -5,8 +5,7 @@ let trashNotesTitles = [];
 let trashNotes = [];
 
 let archiveNotesTitles = [];
-let archiveNotes = []; 
-
+let archiveNotes = [];
 
 function init() {
   loadFromLocalStorage();
@@ -16,8 +15,7 @@ function init() {
   renderArchivNotes();
 }
 
-
-// render function 
+// render function
 
 function renderNotes() {
   let contentRef = document.getElementById("content");
@@ -32,7 +30,11 @@ function renderTrashNotes() {
   let trashContentRef = document.getElementById("trash_content");
   trashContentRef.innerHTML = "";
 
-  for (let indexTrashNote = 0; indexTrashNote < trashNotes.length; indexTrashNote++) {
+  for (
+    let indexTrashNote = 0;
+    indexTrashNote < trashNotes.length;
+    indexTrashNote++
+  ) {
     trashContentRef.innerHTML += getTrashNoteTemplate(indexTrashNote);
   }
 }
@@ -41,12 +43,16 @@ function renderArchivNotes() {
   let archivContentRef = document.getElementById("archiv_content");
   archivContentRef.innerHTML = "";
 
-  for (let indexArchivNote = 0; indexArchivNote < archiveNotes.length; indexArchivNote++) {
-    archivContentRef.innerHTML += getArchivNoteTemplate(indexArchivNote);    
+  for (
+    let indexArchivNote = 0;
+    indexArchivNote < archiveNotes.length;
+    indexArchivNote++
+  ) {
+    archivContentRef.innerHTML += getArchivNoteTemplate(indexArchivNote);
   }
 }
 
-function restoreFromArchive(indexArchivNote){
+function restoreFromArchive(indexArchivNote) {
   let restoredNote = archiveNotes.splice(indexArchivNote, 1)[0];
   notes.push(restoredNote);
 
@@ -55,15 +61,15 @@ function restoreFromArchive(indexArchivNote){
   saveToLocalStorage();
 }
 
-function deleteArchivNote(indexArchivNote){
+function deleteArchivNote(indexArchivNote) {
   archiveNotes.splice(indexArchivNote, 1);
   archiveNotesTitles.splice(indexArchivNote, 1);
-  
+
   renderArchivNotes();
   saveToLocalStorage();
 }
 
-// add Note 
+// add Note
 
 function addNote() {
   let noteTitleRef = document.getElementById("note_title");
@@ -137,8 +143,7 @@ function archiveNote(indexNote) {
   saveToLocalStorage();
 }
 
-
-// LocalStorage 
+// LocalStorage
 
 function saveToLocalStorage() {
   const data = {
@@ -147,7 +152,7 @@ function saveToLocalStorage() {
     trashNotes,
     trashNotesTitles,
     archiveNotes,
-    archiveNotesTitles
+    archiveNotesTitles,
   };
 
   localStorage.setItem("notesAppData", JSON.stringify(data));
