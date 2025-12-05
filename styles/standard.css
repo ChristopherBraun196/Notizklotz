@@ -1,41 +1,202 @@
-/* Globaler Style */
-*{
-    box-sizing: border-box;
-    margin: 0;
-    scroll-behavior: smooth;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-a{
-    text-decoration: none;
+@font-face {
+  font-family: "ZalandoSans";
+  src: url("./assets/fonds/Zalando_Sans/ZalandoSansExpanded-VariableFont_wght.ttf");
 }
 
 body {
-    max-width: 1400px;
-    padding-inline: 160px;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  background: #f3f4f6;
+  font-family: "ZalandoSans", sans-serif;
+  color: #111827;
 }
 
-h1 {
-    padding-top: 80px;
-    padding-bottom: 20px;
+.app {
+  width: 100%;
+  max-width: 1200px;
+  margin: 24px auto 40px;
+  padding: 24px 16px 32px;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.12);
 }
 
-h2 {
-    margin-top: 30px;
-    margin-bottom: 30px;
+.app h1,
+.app > h2 {
+  text-align: center;
+  margin-bottom: 16px;
 }
 
-h3 {
-    margin-top: 30px;
-    margin-bottom: 30px;
-} 
+.note-form-card {
+  padding: 20px 16px;
+  border-radius: 12px;
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  margin-bottom: 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
-h4 {
-    margin-top: 30px;
-    margin-bottom: 30px;
-} 
+.note-form-card label {
+  font-weight: 600;
+  margin-bottom: 6px;
+  display: block;
+  width: 100%;
+  max-width: 500px;
+  text-align: left;
+}
 
+#note_title,
+#note_text {
+  width: 100%;
+  max-width: 500px;
+  padding: 10px 12px;
+  margin-bottom: 14px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  font-size: 15px;
+}
 
-input {
-    display: flex;
-    margin-bottom: 5px;
+#note_text {
+  min-height: 150px;
+  resize: none;
+}
+
+.note-form-card button {
+  margin-top: 10px;
+}
+
+.btn {
+  padding: 10px 16px;
+  border-radius: 8px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.15s ease;
+}
+
+.btn-primary {
+  background: #2563eb;
+  color: white;
+}
+
+.btn-primary:hover {
+  background: #1d4ed8;
+}
+
+.btn-secondary {
+  background: #e5e7eb;
+}
+
+.btn-secondary:hover {
+  background: #d1d5db;
+}
+
+.btn-danger {
+  background: #ef4444;
+  color: white;
+}
+
+.btn-danger:hover {
+  background: #dc2626;
+}
+
+.main-notes-title {
+  text-align: center;
+  font-size: 22px;
+  margin-bottom: 20px;
+}
+
+.columns {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+  margin-top: 16px;
+}
+
+.column h2 {
+  text-align: center;
+  font-size: 18px;
+  margin-bottom: 16px;
+}
+
+#content,
+#trash_content,
+#archiv_content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.note-card {
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.note-text {
+  max-width: 260px;
+  width: 100%;
+}
+
+.note-title {
+  font-weight: 700;
+  font-size: 15px;
+  margin-bottom: 4px;
+}
+
+.note-body {
+  font-size: 14px;
+  line-height: 1.5;
+  white-space: pre-wrap;
+}
+
+.note-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.note-actions .btn {
+  padding: 6px 10px;
+  font-size: 13px;
+}
+
+@media (min-width: 768px) {
+  .app {
+    padding: 32px 24px 40px;
+  }
+
+  .columns {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 28px;
+  }
+
+  .note-text {
+    max-width: 280px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .columns {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+  }
+
+  .note-text {
+    max-width: 260px;
+  }
 }

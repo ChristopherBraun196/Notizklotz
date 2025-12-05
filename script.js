@@ -66,11 +66,11 @@ function deleteArchivNote(indexArchivNote){
 // add Note 
 
 function addNote() {
-  let noteTextRef = document.getElementById("note_title");
-  let noteTitleRef = document.getElementById("note_text");
+  let noteTitleRef = document.getElementById("note_title");
+  let noteTextRef = document.getElementById("note_text");
 
-  let noteText = noteTextRef.value.trim();
   let noteTitle = noteTitleRef.value.trim();
+  let noteText = noteTextRef.value.trim();
 
   if (noteText === "") {
     return;
@@ -80,16 +80,15 @@ function addNote() {
     noteTitle = "Aufgabe " + (notes.length + 1);
   }
 
-  notes.push(noteText);  
   notesTitles.push(noteTitle);
+  notes.push(noteText);
 
   renderNotes();
   saveToLocalStorage();
 
-  noteTextRef.value = "";
   noteTitleRef.value = "";
+  noteTextRef.value = "";
 }
-
 
 // delete & Trash
 
