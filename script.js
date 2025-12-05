@@ -4,6 +4,17 @@ let notes = ["banana", "rasen mähen"];
 let trashNotesTitles = [];
 let trashNotes = [];
 
+
+function init() {
+ 
+  loadFromLocalStorage();
+
+  renderNotes();
+  renderTrashNotes();
+}
+
+
+
 function renderNotes() {
   let contentRef = document.getElementById("content");
   contentRef.innerHTML = "";
@@ -26,20 +37,30 @@ function renderTrashNotes() {
   }
 }
 function getNoteTemplate(indexNote) {
-  return `<p>+ title: ${notesTitles[indexNote]} -> ${notes[indexNote]}<button onclick="deleteNote(${indexNote})">X</button></p>`;
+  return `<p>+ title: 
+  ${notesTitles[indexNote]} -> ${notes[indexNote]}
+  <button onclick="deleteNote(${indexNote})">X</button></p>`;
 }
 
 function getTrashNoteTemplate(indexTrashNote) {
-  return `<p>+  title: ${trashNotesTitles[indexTrashNote]} -> ${trashNotes[indexTrashNote]}<button onclick="deleteTrashNote(${indexTrashNote})">X</button></p>`;
+  return `<p>+  title: ${trashNotesTitles[indexTrashNote]} 
+  -> ${trashNotes[indexTrashNote]}<button onclick="deleteTrashNote(${indexTrashNote})"
+  >X</button></p>`;
 }
 
 function addNote() {
   let noteInputRef = document.getElementById("note_input");
-  let noteInput = noteInputRef.value;
+  let noteInput = noteInputRef.value.trim();
+
+  if (noteInput === ""){
+    return;
+  }
 
   notes.push(noteInput);
+  notesTitles.push("Aufgabe " + notes.length);
 
   renderNotes();
+  saveToLocalStorage();
 
   noteInputRef.value = "";
 }
@@ -53,10 +74,36 @@ function deleteNote(indexNote) {
 
   renderNotes();
   renderTrashNotes();
+  saveToLocalStorage();
 }
 
 function deleteTrashNote(indexTrashNote) {
   trashNotes.splice(indexTrashNote, 1);
   trashNotesTitles.splice(indexTrashNote, 1);
   renderTrashNotes();
+  saveToLocalStorage();
+}
+
+function saveToLocalStorage(){
+  const data = {
+    notes,
+    notesTitles,
+    trashNotes,
+    trashNotesTitles
+  };
+
+  localStorage.setItem("notesAppData", JSON.stringify(data));
+}
+
+function loadFromLocalStorage(){
+  let stored = JSON.parse(localStorage.getItem("notesAppData"));
+
+  if (!stored) {
+    return;
+  }
+
+  notes = stored.notes || [];
+  notesTitles = stored.notesTitles || [];
+  trashNotes = stored.trashNotes || [];
+  trashNotesTitles = stored.trashNotesTitles || [];
 }
