@@ -1,11 +1,10 @@
-// notizen anzeigen lassen
-// ich brauche notizen
+let notesTitles = ["Ba", "Aufgabe"];
 let notes = ["banana", "rasen mähen"];
 
+let trashNotesTitles = [];
 let trashNotes = [];
 
 function renderNotes() {
-  // ich muss definieren wo sie anzuzeigen sind
   let contentRef = document.getElementById("content");
   contentRef.innerHTML = "";
 
@@ -13,12 +12,8 @@ function renderNotes() {
     contentRef.innerHTML += getNoteTemplate(indexNote);
   }
 }
-function getNoteTemplate(indexNote) {
-  return `<p>+ ${notes[indexNote]}<button onclick="deleteNote(${indexNote})">X</button></p>`;
-}
 
 function renderTrashNotes() {
-  // ich muss definieren wo sie anzuzeigen sind
   let trashContentRef = document.getElementById("trash_content");
   trashContentRef.innerHTML = "";
 
@@ -30,11 +25,13 @@ function renderTrashNotes() {
     trashContentRef.innerHTML += getTrashNoteTemplate(indexTrashNote);
   }
 }
+function getNoteTemplate(indexNote) {
+  return `<p>+ title: ${notesTitles[indexNote]} -> ${notes[indexNote]}<button onclick="deleteNote(${indexNote})">X</button></p>`;
+}
 
 function getTrashNoteTemplate(indexTrashNote) {
-  return `<p>+ ${trashNotes[indexTrashNote]}<button onclick="deleteTrashNote(${indexTrashNote})">X</button></p>`;
+  return `<p>+  title: ${trashNotesTitles[indexTrashNote]} -> ${trashNotes[indexTrashNote]}<button onclick="deleteTrashNote(${indexTrashNote})">X</button></p>`;
 }
-// notizen hinzufügen
 
 function addNote() {
   let noteInputRef = document.getElementById("note_input");
@@ -50,11 +47,16 @@ function addNote() {
 function deleteNote(indexNote) {
   let trashNote = notes.splice(indexNote, 1)[0];
   trashNotes.push(trashNote);
+
+  let trashNotesTitle = notesTitles.splice(indexNote, 1)[0];
+  trashNotesTitles.push(trashNotesTitle);
+
   renderNotes();
   renderTrashNotes();
 }
 
-function deleteTrashNote(indexTrashNote){
+function deleteTrashNote(indexTrashNote) {
   trashNotes.splice(indexTrashNote, 1);
+  trashNotesTitles.splice(indexTrashNote, 1);
   renderTrashNotes();
 }
