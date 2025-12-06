@@ -1,5 +1,5 @@
-let notesTitles = ["Ba", "Aufgabe"];
-let notes = ["banana", "rasen mähen"];
+let notesTitles = [];
+let notes = [];
 
 let trashNotesTitles = [];
 let trashNotes = [];
@@ -55,6 +55,9 @@ function renderArchivNotes() {
 function restoreFromArchive(indexArchivNote) {
   let restoredNote = archiveNotes.splice(indexArchivNote, 1)[0];
   notes.push(restoredNote);
+
+  let restoredTitle = archiveNotesTitles.splice(indexArchivNote,1)[0];
+  notesTitles.push(restoredTitle);
 
   renderNotes();
   renderArchivNotes();
@@ -137,8 +140,8 @@ function restoreFromDelete(indexDeleteNote) {
 // archive
 
 function archiveNote(indexNote) {
-  let archiveNote = notes.splice(indexNote, 1)[0];
-  archiveNotes.push(archiveNote);
+  let archiveNoteText = notes.splice(indexNote, 1)[0];
+  archiveNotes.push(archiveNoteText);
 
   let archivedTitle = notesTitles.splice(indexNote, 1)[0];
   archiveNotesTitles.push(archivedTitle);
