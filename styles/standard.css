@@ -4,10 +4,6 @@
   padding: 0;
 }
 
-@font-face {
-  font-family: "ZalandoSans";
-  src: url("./assets/fonds/Zalando_Sans/ZalandoSansExpanded-VariableFont_wght.ttf");
-}
 
 body {
   min-height: 100vh;

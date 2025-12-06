@@ -1,0 +1,20 @@
+@font-face {
+  font-family: "ZalandoSans";
+  src: url("./assets/fonds/Zalando_Sans/ZalandoSansExpanded-VariableFont_wght.ttf");
+}
+
+.center {
+  width: 100%;
+  max-width: 600px;
+  padding: 40px;
+  text-align: center;
+}
+
+.divFooter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 15px;
+  text-align: center;
+  font-size: 12px;
+}
