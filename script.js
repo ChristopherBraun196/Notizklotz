@@ -62,10 +62,15 @@ function restoreFromArchive(indexArchivNote) {
 }
 
 function deleteArchivNote(indexArchivNote) {
-  archiveNotes.splice(indexArchivNote, 1);
-  archiveNotesTitles.splice(indexArchivNote, 1);
+
+  let trashNote = archiveNotes.splice(indexArchivNote, 1)[0];
+  trashNotes.push(trashNote);
+
+  let trashTitle = archiveNotesTitles.splice(indexArchivNote, 1)[0];
+  trashNotesTitles.push(trashTitle);
 
   renderArchivNotes();
+  renderTrashNotes();
   saveToLocalStorage();
 }
 
